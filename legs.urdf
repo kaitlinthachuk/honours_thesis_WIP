@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+    <robot name="legs">
+
+    <material name="blue">
+        <color rgba="0 0 0.8 1"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+    <material name="white">
+        <color rgba="1 1 1 1"/>
+    </material>
+
+      <link name="base_link">
+        <visual>
+          <geometry>
+            <box size = "0.2 0.4 0.8"/>
+          </geometry>
+          <origin  xyz = "0 0 1.5"/>
+          <material name = "blue"/>
+        </visual>
+      </link>
+
+      <link name = "left_hip">
+      <visual>
+          <geometry>
+            <sphere radius = "0.1"/>
+          </geometry>
+          <material name = "white"/>
+        </visual>
+      </link>
+
+      <joint name = "base_to_left_hip" type = "continuous">
+      <parent link = "base_link"/>
+      <child link = "left_hip"/>
+      <origin xyz = "0 -0.15 1.1"/>
+      <axis xyz="0 1 0"/>
+      </joint>
+
+      <link name = "left_thigh">
+        <visual>
+            <geometry>
+                <box size = "0.2 0.1 0.4"/>
+            </geometry>
+        </visual>
+      </link>
+
+      <joint name = "base_to_left_thigh" type = "continuous">
+      <parent link = "left_hip"/>
+      <child link = "left_thigh"/>
+      <origin xyz = "0 0 -0.225"/>
+       <axis xyz="0 1 0"/>
+      </joint>
+
+      <link name = "left_knee">
+        <visual>
+        <geometry>
+            <sphere radius = "0.1"/>
+          </geometry>
+          <material name = "white"/>
+        </visual>
+      </link>
+
+      <joint name = "left_thigh_to_left_knee" type = "continuous">
+      <parent link = "left_thigh"/>
+      <child link = "left_knee"/>
+      <origin xyz = "0 0 -0.2"/>
+      <axis xyz="0 1 0"/>
+      </joint>
+
+      <link name = "left_shin">
+        <visual>
+            <geometry>
+                <box size = "0.2 0.1 0.4"/>
+            </geometry>
+        </visual>
+      </link>
+
+      <joint name = "left_knee_to_left_shin" type = "continuous">
+      <parent link = "left_knee"/>
+      <child link = "left_shin"/>
+      <origin xyz = "0 0 -0.25"/>
+      <axis xyz="0 1 0"/>
+      </joint>
+
+      <link name = "left_ankle">
+        <visual>
+        <geometry>
+            <sphere radius = "0.1"/>
+          </geometry>
+          <material name = "white"/>
+        </visual>
+      </link>
+
+      <joint name = "left_shin_to_left_ankle" type = "continuous">
+      <parent link = "left_shin"/>
+      <child link = "left_ankle"/>
+      <origin xyz = "0 0 -0.2"/>
+      <axis xyz="0 1 0"/>
+      </joint>
+
+       <link name = "left_foot">
+        <visual>
+        <geometry>
+            <box size = "0.3 0.1 0.15"/>
+          </geometry>
+        </visual>
+      </link>
+
+      <joint name = "left_ankle_to_left_foot" type = "continuous">
+      <parent link = "left_ankle"/>
+      <child link = "left_foot"/>
+      <origin xyz = "0.15 0 0"/>
+      <axis xyz="0 1 0"/>
+      </joint>
+
+      <link name = "right_hip">
+      <visual>
+          <geometry>
+            <sphere radius = "0.1"/>
+          </geometry>
+          <material name = "white"/>
+        </visual>
+      </link>
+
+      <joint name = "base_to_right_hip" type = "continuous">
+      <parent link = "base_link"/>
+      <child link = "right_hip"/>
+      <origin xyz = "0 0.15 1.1"/>
+      <axis xyz="0 1 0"/>
+      </joint>
+
+      <link name = "right_thigh">
+        <visual>
+            <geometry>
+                <box size = "0.2 0.1 0.4"/>
+            </geometry>
+        </visual>
+      </link>
+
+      <joint name = "base_to_right_thigh" type = "continuous">
+      <parent link = "right_hip"/>
+      <child link = "right_thigh"/>
+      <origin xyz = "0 0 -0.225"/>
+      <axis xyz="0 1 0"/>
+      </joint>
+
+      <link name = "right_knee">
+        <visual>
+        <geometry>
+            <sphere radius = "0.1"/>
+          </geometry>
+          <material name = "white"/>
+        </visual>
+      </link>
+
+      <joint name = "right_thigh_to_right_knee" type = "continuous">
+      <parent link = "right_thigh"/>
+      <child link = "right_knee"/>
+      <origin xyz = "0 0 -0.2"/>
+      <axis xyz="0 1 0"/>
+      </joint>
+
+      <link name = "right_shin">
+        <visual>
+            <geometry>
+                <box size = "0.2 0.1 0.4"/>
+            </geometry>
+        </visual>
+      </link>
+
+      <joint name = "right_knee_to_right_shin" type = "continuous">
+      <parent link = "right_knee"/>
+      <child link = "right_shin"/>
+      <origin xyz = "0 0 -0.25"/>
+      <axis xyz="0 1 0"/>
+      </joint>
+
+      <link name = "right_ankle">
+        <visual>
+        <geometry>
+            <sphere radius = "0.1"/>
+          </geometry>
+          <material name = "white"/>
+        </visual>
+      </link>
+
+      <joint name = "right_shin_to_right_ankle" type = "continuous">
+      <parent link = "right_shin"/>
+      <child link = "right_ankle"/>
+      <origin xyz = "0 0 -0.2"/>
+      <axis xyz="0 1 0"/>
+      </joint>
+
+       <link name = "right_foot">
+        <visual>
+        <geometry>
+            <box size = "0.3 0.1 0.15"/>
+          </geometry>
+        </visual>
+      </link>
+
+      <joint name = "right_ankle_to_right_foot" type = "fixed">
+      <parent link = "right_ankle"/>
+      <child link = "right_foot"/>
+      <origin xyz = "0.15 0 0"/>
+      </joint>
+
+    </robot>

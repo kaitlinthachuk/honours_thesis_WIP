@@ -1,0 +1,69 @@
+red axis points in direction of positive x
+green axis is positive y
+blue axis is positive z
+
+rpy - roll pitch yaw
+roll - rotates about the x axis
+pitch - rotates about the y axis
+yaw - rotates about the z axis
+**use decimal values for angles eg PI/2 = 1.57075
+
+joint’s origin
+-It is defined in terms of the parent’s reference frame.
+- if no rpy then the child frame will be default have the same orientation as the parent frame.
+
+visual origin
+-it has both a xyz and rpy offset. This defines where the center of the visual element should be, relative to its origin.
+
+Box has 3 parameters
+x length, y length, and z length
+
+kinds of joints:
+fixed - joints don't move, locked into one position
+
+continuous - meaning that it can take on any angle from negative infinity to positive infinity.
+    The only additional information we have to add is the axis of rotation, here specified by an xyz triplet, which specifies a vector around which the child will rotate.
+    Since we want it to go around the z axis, we specify the vector "0 0 1".
+    Example:
+    <joint name="head_swivel" type="continuous">
+        <parent link="base_link"/>
+        <child link="head"/>
+        <axis xyz="0 0 1"/>
+        <origin xyz="0 0 0.3"/>
+      </joint>
+
+revolute - This means that they rotate in the same way that the continuous joints do, but they have strict limits.
+    Hence, we must include the limit tag specifying the upper and lower limits of the joint (in radians).
+    We also must specify a maximum velocity and effort for this joint.
+    Example:
+    <joint name="left_gripper_joint" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0.2 0.01 0"/>
+    <parent link="gripper_pole"/>
+    <child link="left_gripper"/>
+  </joint>
+
+prismatic - This means that it moves along an axis, not around it.
+    Example:
+    <joint name="gripper_extension" type="prismatic">
+    <parent link="base_link"/>
+    <child link="gripper_pole"/>
+    <limit effort="1000.0" lower="-0.38" upper="0" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0.19 0 0.2"/>
+  </joint>
+
+  Other kinds of joints not covered in tutorial:
+  planar: joint can move around in a plane
+  floating joint - is unconstrained and can move around in any of the three dimensions.
+  These two joints cannot be specified by just a number
+
+collision tag
+-The collision element is a direct subelement of the link object, at the same level as the visual tag
+-The collision element defines its shape the same way the visual element does, with a geometry tag. The format for the geometry tag is exactly the same here as with the visual.
+-You can also specify an origin in the same way as a subelement of the collision tag (as with the visual)
+-In many cases, you’ll want the collision geometry and origin to be exactly the same as the visual geometry and origin.
+However, there are two main cases where you wouldn’t.
+
+Quicker Processing - Doing collision detection for two meshes is a lot more computational complex than for two simple geometries. Hence, you may want to replace the meshes with simpler geometries in the collision element.
+Safe Zones - You may want to restrict movement close to sensitive equipment. For instance, if we didn’t want anything to collide with R2D2’s head, we might define the collision geometry to be a cylinder encasing his head to prevent anything from getting to near his head.
