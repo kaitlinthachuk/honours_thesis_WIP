@@ -18,11 +18,22 @@
           <geometry>
             <box size = "0.2 0.4 0.8"/>
           </geometry>
-          <origin  xyz = "0 0 1.5"/>
+          <origin  xyz = "0 0 0"/>
           <material name = "blue"/>
         </visual>
+        <collision>
+            <geometry>
+                <box size = "0.2 0.4 0.8"/>
+            </geometry>
+            <origin  xyz = "0 0 0"/>
+        </collision>
+        <inertial>
+         <mass value="10"/>
+         <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+       </inertial>
       </link>
 
+<!-- beginning of left leg-->
       <link name = "left_hip">
       <visual>
           <geometry>
@@ -30,13 +41,16 @@
           </geometry>
           <material name = "white"/>
         </visual>
+        <inertial>
+         <mass value="0.1"/>
+         <inertia ixx="0.0004" ixy="0.0" ixz="0.0" iyy="0.0004" iyz="0.0" izz="0.0004"/>
+       </inertial>
       </link>
 
-      <joint name = "base_to_left_hip" type = "continuous">
+      <joint name = "base_to_left_hip" type = "fixed">
       <parent link = "base_link"/>
       <child link = "left_hip"/>
-      <origin xyz = "0 -0.15 1.1"/>
-      <axis xyz="0 1 0"/>
+      <origin xyz = "0 -0.1 -0.4"/>
       </joint>
 
       <link name = "left_thigh">
@@ -44,14 +58,26 @@
             <geometry>
                 <box size = "0.2 0.1 0.4"/>
             </geometry>
+            <material name = "black"/>
         </visual>
+        <collision>
+            <geometry>
+               <box size = "0.2 0.1 0.4"/>
+            </geometry>
+        </collision>
+        <inertial>
+         <mass value="8"/>
+         <inertia ixx="0.113333" ixy="0.0" ixz="0.0" iyy="0.133333" iyz="0.0" izz="0.033333"/>
+       </inertial>
       </link>
 
-      <joint name = "base_to_left_thigh" type = "continuous">
-      <parent link = "left_hip"/>
-      <child link = "left_thigh"/>
-      <origin xyz = "0 0 -0.225"/>
-       <axis xyz="0 1 0"/>
+
+      <joint name="left_hip_to_left_thigh" type="revolute">
+        <axis xyz="0 1 0"/>
+        <limit effort="1000.0" lower="-0.785398" upper="0.785398" velocity="0.5"/>
+        <origin rpy="0 0 0" xyz="0 0 -0.2"/>
+        <parent link="left_hip"/>
+        <child link="left_thigh"/>
       </joint>
 
       <link name = "left_knee">
@@ -61,13 +87,16 @@
           </geometry>
           <material name = "white"/>
         </visual>
+        <inertial>
+         <mass value="0.1"/>
+         <inertia ixx="0.0004" ixy="0.0" ixz="0.0" iyy="0.0004" iyz="0.0" izz="0.0004"/>
+       </inertial>
       </link>
 
-      <joint name = "left_thigh_to_left_knee" type = "continuous">
+      <joint name = "left_thigh_to_left_knee" type = "fixed">
       <parent link = "left_thigh"/>
       <child link = "left_knee"/>
       <origin xyz = "0 0 -0.2"/>
-      <axis xyz="0 1 0"/>
       </joint>
 
       <link name = "left_shin">
@@ -75,13 +104,24 @@
             <geometry>
                 <box size = "0.2 0.1 0.4"/>
             </geometry>
+            <material name = "black"/>
         </visual>
+        <collision>
+            <geometry>
+               <box size = "0.2 0.1 0.4"/>
+            </geometry>
+        </collision>
+        <inertial>
+         <mass value="5"/>
+         <inertia ixx="0.0708333" ixy="0.0" ixz="0.0" iyy="0.0833333" iyz="0.0" izz="0.2083333"/>
+       </inertial>
       </link>
 
-      <joint name = "left_knee_to_left_shin" type = "continuous">
+      <joint name = "left_knee_to_left_shin" type = "revolute">
       <parent link = "left_knee"/>
       <child link = "left_shin"/>
-      <origin xyz = "0 0 -0.25"/>
+      <limit effort="1000.0" lower="0" upper="1.5708" velocity="0.5"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.2"/>
       <axis xyz="0 1 0"/>
       </joint>
 
@@ -92,13 +132,21 @@
           </geometry>
           <material name = "white"/>
         </visual>
+        <collision>
+            <geometry>
+               <sphere radius = "0.1"/>
+            </geometry>
+        </collision>
+        <inertial>
+         <mass value="0.1"/>
+         <inertia ixx="0.0004" ixy="0.0" ixz="0.0" iyy="0.0004" iyz="0.0" izz="0.0004"/>
+       </inertial>
       </link>
 
-      <joint name = "left_shin_to_left_ankle" type = "continuous">
+      <joint name = "left_shin_to_left_ankle" type = "fixed">
       <parent link = "left_shin"/>
       <child link = "left_ankle"/>
       <origin xyz = "0 0 -0.2"/>
-      <axis xyz="0 1 0"/>
       </joint>
 
        <link name = "left_foot">
@@ -107,14 +155,26 @@
             <box size = "0.3 0.1 0.15"/>
           </geometry>
         </visual>
+        <collision>
+            <geometry>
+               <box size = "0.3 0.1 0.15"/>
+            </geometry>
+        </collision>
+        <inertial>
+         <mass value="2"/>
+         <inertia ixx="0.000541667" ixy="0.0" ixz="0.0" iyy="0.01875" iyz="0.0" izz="0.0166667"/>
+       </inertial>
       </link>
 
-      <joint name = "left_ankle_to_left_foot" type = "continuous">
+      <joint name = "left_ankle_to_left_foot" type = "revolute">
       <parent link = "left_ankle"/>
       <child link = "left_foot"/>
-      <origin xyz = "0.15 0 0"/>
+      <limit effort="1000.0" lower="0" upper="0.349066" velocity="0.5"/>
+      <origin rpy="0 0 0" xyz="0.15 0 0"/>
       <axis xyz="0 1 0"/>
       </joint>
+
+<!-- beginning of right leg-->
 
       <link name = "right_hip">
       <visual>
@@ -123,13 +183,16 @@
           </geometry>
           <material name = "white"/>
         </visual>
+        <inertial>
+         <mass value="0.1"/>
+         <inertia ixx="0.0004" ixy="0.0" ixz="0.0" iyy="0.0004" iyz="0.0" izz="0.0004"/>
+       </inertial>
       </link>
 
-      <joint name = "base_to_right_hip" type = "continuous">
+      <joint name = "base_to_right_hip" type = "fixed">
       <parent link = "base_link"/>
       <child link = "right_hip"/>
-      <origin xyz = "0 0.15 1.1"/>
-      <axis xyz="0 1 0"/>
+      <origin xyz = "0 0.1 -0.4"/>
       </joint>
 
       <link name = "right_thigh">
@@ -137,14 +200,25 @@
             <geometry>
                 <box size = "0.2 0.1 0.4"/>
             </geometry>
+            <material name = "black"/>
         </visual>
+        <collision>
+            <geometry>
+               <box size = "0.2 0.1 0.4"/>
+            </geometry>
+        </collision>
+        <inertial>
+         <mass value="8"/>
+         <inertia ixx="0.113333" ixy="0.0" ixz="0.0" iyy="0.133333" iyz="0.0" izz="0.033333"/>
+       </inertial>
       </link>
 
-      <joint name = "base_to_right_thigh" type = "continuous">
+      <joint name = "right_hip_to_right_knee" type = "revolute">
       <parent link = "right_hip"/>
       <child link = "right_thigh"/>
-      <origin xyz = "0 0 -0.225"/>
       <axis xyz="0 1 0"/>
+      <limit effort="1000.0" lower="-0.785398" upper="0.785398" velocity="0.5"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.2"/>
       </joint>
 
       <link name = "right_knee">
@@ -154,9 +228,18 @@
           </geometry>
           <material name = "white"/>
         </visual>
+        <collision>
+            <geometry>
+               <sphere radius = "0.1"/>
+            </geometry>
+        </collision>
+        <inertial>
+         <mass value="0.1"/>
+         <inertia ixx="0.0004" ixy="0.0" ixz="0.0" iyy="0.0004" iyz="0.0" izz="0.0004"/>
+       </inertial>
       </link>
 
-      <joint name = "right_thigh_to_right_knee" type = "continuous">
+      <joint name = "right_thigh_to_right_knee" type = "fixed">
       <parent link = "right_thigh"/>
       <child link = "right_knee"/>
       <origin xyz = "0 0 -0.2"/>
@@ -168,13 +251,24 @@
             <geometry>
                 <box size = "0.2 0.1 0.4"/>
             </geometry>
+            <material name = "black"/>
         </visual>
+        <collision>
+            <geometry>
+               <box size = "0.2 0.1 0.4"/>
+            </geometry>
+        </collision>
+        <inertial>
+         <mass value="5"/>
+         <inertia ixx="0.0708333" ixy="0.0" ixz="0.0" iyy="0.0833333" iyz="0.0" izz="0.2083333"/>
+       </inertial>
       </link>
 
-      <joint name = "right_knee_to_right_shin" type = "continuous">
+      <joint name = "right_knee_to_right_shin" type = "revolute">
       <parent link = "right_knee"/>
       <child link = "right_shin"/>
-      <origin xyz = "0 0 -0.25"/>
+      <limit effort="1000.0" lower="0" upper="1.5708" velocity="0.5"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.2"/>
       <axis xyz="0 1 0"/>
       </joint>
 
@@ -185,13 +279,21 @@
           </geometry>
           <material name = "white"/>
         </visual>
+        <collision>
+            <geometry>
+               <sphere radius = "0.1"/>
+            </geometry>
+        </collision>
+        <inertial>
+         <mass value="0.1"/>
+         <inertia ixx="0.0004" ixy="0.0" ixz="0.0" iyy="0.0004" iyz="0.0" izz="0.0004"/>
+       </inertial>
       </link>
 
-      <joint name = "right_shin_to_right_ankle" type = "continuous">
+      <joint name = "right_shin_to_right_ankle" type = "fixed">
       <parent link = "right_shin"/>
       <child link = "right_ankle"/>
       <origin xyz = "0 0 -0.2"/>
-      <axis xyz="0 1 0"/>
       </joint>
 
        <link name = "right_foot">
@@ -200,12 +302,23 @@
             <box size = "0.3 0.1 0.15"/>
           </geometry>
         </visual>
+        <collision>
+            <geometry>
+               <box size = "0.3 0.1 0.15"/>
+            </geometry>
+        </collision>
+        <inertial>
+         <mass value="2"/>
+         <inertia ixx="0.000541667" ixy="0.0" ixz="0.0" iyy="0.01875" iyz="0.0" izz="0.0166667"/>
+       </inertial>
       </link>
 
-      <joint name = "right_ankle_to_right_foot" type = "fixed">
+      <joint name = "right_ankle_to_right_foot" type = "revolute">
       <parent link = "right_ankle"/>
       <child link = "right_foot"/>
-      <origin xyz = "0.15 0 0"/>
+      <limit effort="1000.0" lower="0" upper="0.349066" velocity="0.5"/>
+      <origin rpy="0 0 0" xyz="0.15 0 0"/>
+      <axis xyz="0 1 0"/>
       </joint>
 
     </robot>
