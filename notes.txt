@@ -70,6 +70,8 @@ Safe Zones - You may want to restrict movement close to sensitive equipment. For
 
 Physical Properties
 1. Inertia
-
 2. Contact Coefficients
 3. Joint Dynamics
+
+
+Pybullet examples path: C:\Python27\Lib\site-packages\pybullet_envs\examples
