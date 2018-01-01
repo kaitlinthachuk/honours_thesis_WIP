@@ -9,7 +9,7 @@ planeId = p.loadURDF("plane.urdf")
 p.setGravity(0,0,-5)
 legsStartPos = [0,0,2]
 legsStartOrientation = p.getQuaternionFromEuler([0,0,0])
-legsID = p.loadMJCF("legs.mjcf")[0]
+legsID = p.loadMJCF("legs.xml")[0]
 p.resetBasePositionAndOrientation(legsID, legsStartPos, legsStartOrientation)
 
 time_step = 0.01

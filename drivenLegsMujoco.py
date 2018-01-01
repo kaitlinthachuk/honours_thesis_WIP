@@ -8,7 +8,7 @@ planeId = p.loadURDF("plane.urdf")
 legsStartPos = [0,0,2]
 p.setGravity(0,0,-10)
 legsStartOrientation = p.getQuaternionFromEuler([0,0,0])
-legsID = p.loadMJCF("legs.mjcf")[0]
+legsID = p.loadMJCF("legs.xml")[0]
 p.resetBasePositionAndOrientation(legsID, legsStartPos, legsStartOrientation)
 
 #drives the right thigh joint with a sin wave, left with cos

@@ -20,11 +20,11 @@ conid = p.connect(p.SHARED_MEMORY)
 if (conid<0):
     p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath()) #used by loadURDF
-p.resetDebugVisualizerCamera(cameraDistance=10, cameraYaw=0, cameraPitch=0, cameraTargetPosition=[2,0,0])
 p.setInternalSimFlags(0)
 p.resetSimulation()
 
 luxo = p.loadMJCF("torque.xml")[0]
+#p.resetBasePositionAndOrientation(luxo,[0,0,2], [0,0,0,1])
 BASE_JOINT_ID = 4 
 NECK_JOINT_ID = 6 
 maxForce = 100

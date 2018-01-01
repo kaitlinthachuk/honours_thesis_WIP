@@ -45,10 +45,4 @@
     </body>
     -->
   </worldbody>
-  <actuator>
-    <!-- <motor joint="torso_joint" ctrlrange="-100.0 100.0" isctrllimited="true"/>-->
-    <motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="200" joint="base_joint"/>
-    <motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="200" joint="leg_joint"/>
-    <!-- <motor joint="finger2_rot" ctrlrange="-20.0 20.0" isctrllimited="true"/>-->
-  </actuator>
 </mujoco>
