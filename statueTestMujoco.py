@@ -26,15 +26,15 @@ for step_counter in range(steps):
 
     # target angle for thighs is -45 deg
     right_hip = joint_states[5]
-    tau_1 = kp * (-0.785398 - right_hip[0]) - kd * right_hip[1]
+    tau_5 = kp * (-0.785398 - right_hip[0]) - kd * right_hip[1]
     left_hip = joint_states[14]
-    tau_7 = kp * (-0.785398 - left_hip[0]) - kd * left_hip[1]
+    tau_14 = kp * (-0.785398 - left_hip[0]) - kd * left_hip[1]
 
     #target angle for knees is 60 deg
     right_knee = joint_states[8]
-    tau_3 = kp * (1.0472 - right_knee[0]) - kd * right_knee[1]
+    tau_8 = kp * (1.0472 - right_knee[0]) - kd * right_knee[1]
     left_knee = joint_states[17]
-    tau_9 = kp * (1.0472 - left_knee[0]) - kd * left_knee[1]
+    tau_17 = kp * (1.0472 - left_knee[0]) - kd * left_knee[1]
 
     # target angle for ankles is 10 deg
     # joint_state_5 = joint_states[5]
@@ -43,5 +43,5 @@ for step_counter in range(steps):
     # tau_11 = kp * (-0.174533 - joint_state_11[0]) - kd * joint_state_11[1]
 
     #target angle
-    p.setJointMotorControlArray(legsID, [1, 3, 7, 9], controlMode=p.TORQUE_CONTROL, forces=[tau_1, tau_3, tau_7, tau_9])
+    p.setJointMotorControlArray(legsID, [5, 8, 14, 17], controlMode=p.TORQUE_CONTROL, forces=[tau_5, tau_8, tau_14, tau_17])
     p.stepSimulation()

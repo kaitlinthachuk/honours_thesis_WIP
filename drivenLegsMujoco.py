@@ -16,18 +16,18 @@ p.resetBasePositionAndOrientation(legsID, legsStartPos, legsStartOrientation)
 time_step = 0.01
 p.setTimeStep(time_step)
 steps = 10000
-kp = 150
-kd = 15
+kp = 400
+kd = 40
 
 
 for step_counter in range(steps):
     t = step_counter * time_step
     #position = joint_state[0], velocity - joint_state[1]
     right_hip = p.getJointState(legsID, 5)
-    tau_1 = kp * (math.sin(t) - right_hip[0]) - kd * right_hip[1]
+    tau_5 = kp * (math.sin(t) - right_hip[0]) - kd * right_hip[1]
 
     left_hip = p.getJointState(legsID, 14)
-    tau_7 = kp * (math.cos(t) - left_hip[0]) - kd * left_hip[1]
-    p.setJointMotorControlArray(legsID, [1,7], controlMode=p.TORQUE_CONTROL, forces=[tau_1, tau_7])
+    tau_14 = kp * (math.cos(t) - left_hip[0]) - kd * left_hip[1]
+    p.setJointMotorControlArray(legsID, [5,14], controlMode=p.TORQUE_CONTROL, forces=[tau_5, tau_14])
 
     p.stepSimulation()
