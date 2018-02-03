@@ -43,5 +43,5 @@ for step_counter in range(steps):
     # tau_11 = kp * (-0.174533 - joint_state_11[0]) - kd * joint_state_11[1]
 
     #target angle
-    p.setJointMotorControlArray(legsID, [5, 8, 14, 17], controlMode=p.TORQUE_CONTROL, forces=[tau_5, tau_8, tau_14, tau_17])
+    p.setJointMotorControlArray(legsID, [8,5, 14, 17], controlMode=p.TORQUE_CONTROL, forces=[tau_8, tau_5, tau_14, tau_17])
     p.stepSimulation()

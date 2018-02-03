@@ -21,7 +21,7 @@ p.setAdditionalSearchPath(pybullet_data.getDataPath())  # used by loadURDF
 p.setInternalSimFlags(0)
 p.resetSimulation()
 
-legs = p.loadMJCF("legs2.xml")[0]
+legs = p.loadMJCF("legs.xml")[0]
 #p.resetBasePositionAndOrientation(legs, [0, 0, 2], [0, 0, 0, 1])
 BASE_JOINT_ID = 4
 NECK_JOINT_ID = 6
