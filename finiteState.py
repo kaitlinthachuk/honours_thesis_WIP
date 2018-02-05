@@ -141,7 +141,8 @@ def state1():
     contact_distance = np.inf
 
     while contact_distance > foot_contact_tol:
-        contact_points = p.getContactPoints(bodyA=planeId, bodyB=legsID)
+        #swing leg right leg, stance left
+        contact_points = p.getContactPoints(bodyA=planeId, bodyB=legsID, linkIndexB=right_foot_link)
         contact_distance = contact_points[0][8]
         set_torques(1)
         print("state 1")
@@ -163,7 +164,8 @@ def state3():
     contact_distance = np.inf
 
     while contact_distance > foot_contact_tol:
-        contact_points = p.getContactPoints(bodyA=planeId, bodyB=legsID)
+        #swing leg is left leg, right stance leg
+        contact_points = p.getContactPoints(bodyA=planeId, bodyB=legsID, linkIndexB=left_foot_link)
         contact_distance = contact_points[0][8]
         set_torques(3)
         print("state3")
