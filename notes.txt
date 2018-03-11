@@ -75,3 +75,25 @@ Physical Properties
 
 
 Pybullet examples path: C:\Python27\Lib\site-packages\pybullet_envs\examples
+
+walks off the edge of the world with these parameters: gait is very small
+swing_hip_0_2 = -0.55
+swing_knee_0_2 = 1.10
+swing_hip_1_3 = 0.9
+swing_knee_1_3 = 0.05
+
+stance_knee_0_2 = 0.05
+stance_ankle_0_2 = -0.20
+stance_knee_1_3 = 0.10
+stance_ankle_1_3 = -0.2
+
+walks off edge of the world: gait is a bit faster, feat still drag on the ground
+swing_hip_0_2 = -0.55
+swing_knee_0_2 = 1.1
+swing_hip_1_3 = 1.2
+swing_knee_1_3 = 0.1
+
+stance_knee_0_2 = 0.05
+stance_ankle_0_2 = -0.20
+stance_knee_1_3 = 0.10
+stance_ankle_1_3 = -0.2
