@@ -222,7 +222,7 @@ def set_torque_3():
 # state definitions
 def state0():
     t = time.time()
-    while time.time() - t < 0.3:
+    while time.time() - t < 3:
         set_torque_0()
     state1()
 
@@ -243,7 +243,7 @@ def state1():
 
 def state2():
     t = time.time()
-    while time.time() - t < 0.3:
+    while time.time() - t < 3:
         set_torque_2()
     state3()
 
