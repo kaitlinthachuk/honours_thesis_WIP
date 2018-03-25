@@ -34,10 +34,10 @@ left_foot_link = 21
 # target angles
 base_angle = 0
 
-swing_hip_0_2 = 0.55
-swing_knee_0_2 = -1.1
-swing_hip_1_3 = -1.2
-swing_knee_1_3 = -0.1
+swing_hip_0_2 = 0.7
+swing_knee_0_2 = -1.3
+swing_hip_1_3 = -0.7
+swing_knee_1_3 = -0.05
 swing_ankle_0_2 = 0.2
 swing_ankle_1_3 = 0.2
 
@@ -50,8 +50,8 @@ stance_ankle_1_3 = 0.2
 kp = 800
 kd = 80
 cd_0_2 = 0
-cd_1_3 = 0.25
-cv_0_2 = 0.25
+cv_0_2 = 0.2
+cd_1_3 = 2.2
 cv_1_3 = 0
 
 # simulation parameters
@@ -222,7 +222,7 @@ def set_torque_3():
 # state definitions
 def state0():
     t = time.time()
-    while time.time() - t < 3:
+    while time.time() - t < 0.3:
         set_torque_0()
     state1()
 
@@ -243,7 +243,7 @@ def state1():
 
 def state2():
     t = time.time()
-    while time.time() - t < 3:
+    while time.time() - t < 0.3:
         set_torque_2()
     state3()
 
@@ -263,5 +263,8 @@ def state3():
     state0()
 
 
-# start the FSM
+# start the FSM with a small time delay to allow character to fall into place
+t = time.time()
+while time.time() - t < 0.3:
+    p.stepSimulation()
 state0()
