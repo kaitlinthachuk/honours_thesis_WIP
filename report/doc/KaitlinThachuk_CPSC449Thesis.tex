@@ -1,0 +1,87 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{rotating}
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{listings}
+
+\renewcommand{\thesection}{\arabic{section}}
+
+\begin{document}
+
+%%Title page
+\begin{titlepage}
+
+\centering
+\Large
+
+~\vspace{\fill}
+
+{\huge 
+Thesis title: may be long or short
+}
+
+\vspace{1.5cm}
+
+{\LARGE
+Kaitlin Thachuk
+}
+
+\vspace{3.5cm}
+
+A thesis submitted in partial fulfillment for the\\
+degree of Bachelors of Science Honours\\[1em]
+in the\\[1em]
+Faculty of Computer Science\\[1em]
+University of British Columbia
+
+\vspace{3.5cm}
+
+Supervisor: Prof. Michiel van de Panne
+
+\vspace{\fill}
+
+April 2018
+\end{titlepage}
+%%%%
+\begin{titlepage}
+
+
+\begin{abstract}
+asdf
+\end{abstract}
+\end{titlepage}
+\newpage
+\pagenumbering{roman}
+\tableofcontents
+\listoffigures
+\listoftables
+
+\newpage
+\section{Introduction}
+\pagenumbering{arabic}
+The purpose of this project was to reimplement the work done by Yin, Loken and van de Panne in their 2007 paper on simple biped locomotion control using a newer physics simulator \cite{Yin07}.  \cite{Panne94virtualwind-up} 
+\cite{Geijtenbeek} \cite{Raibert}
+\section{Methods}
+\section{Results and Discussion}
+\section{Conclusion}
+\section{Further Works}
+The simple biped locomotion control presented in this paper can easily be expanded into many avenues for further works. The first and most obvious of which is to control the motion in 3D instead of the 2D model presented here. Removing the constraint on the body would introduce another dimension of balance control that would need to be implemented and optimized, allowing for steps to the side to help keep the figure upright. When working with this 2D model one could use optimization routines to try and find the set of parameters which produces the longest upright walking time. Stochastic policy search, cyclic coordinate decent and covariance matrix adaptation are all methods that could be applied to finding the particular balance parameters, cd and cv for optimal walking. Another expansion of this model is different gaits and walking terrain. For example running, walking with high knees, jumping, and even more complex movements could be implemented using the finite state machine framework. Furthermore inclined or bumpy terrain as well as external forces acting on the body could be used to further push the balance and locomotion control. Finally models like these can be used to bridge the gap between simulation and reality. The locomotion control can be applied to real life robots and these models can help guide the way in which their locomotion is developed. 
+
+\section{Acknowledgements}
+First and foremost thank you to Prof. Michiel Van de Panne for taking me on and sharing his time and knowledge to introduce me to this topic. I've learned a lot.\\
+
+A special thank you to Kristen Ruhnke without whom this thesis would probably not have been written in any sort of reasonable time frame; your support and motivation have made all the difference.\\
+
+Finally thank you to my parents who have offered endless encouragement over the years; I did it just like you said I would.
+
+
+\appendix
+\section{Code}
+\section{Code Documentation}
+
+\bibliography{thesisBib}{}
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{plain}
+\end{document}
