@@ -1,7 +1,6 @@
 import pybullet as p
 import pybullet_data
 import time
-import numpy as np
 
 physicsClient = p.connect(p.GUI)  # or p.DIRECT for non-graphical version
 p.setAdditionalSearchPath(pybullet_data.getDataPath())  # used by loadURDF
@@ -118,8 +117,8 @@ def set_torque_0():
 
     # update forces
     p.setJointMotorControlArray(legsID, [right_hip_joint, right_knee_joint, right_ankle_joint, left_hip_joint,
-                                         left_knee_joint, left_ankle_joint], controlMode=p.TORQUE_CONTROL,
-                                forces=[tau_r_hip, tau_r_knee,tau_r_ankle, tau_l_hip, tau_l_knee, tau_l_ankle])
+        left_knee_joint, left_ankle_joint], controlMode=p.TORQUE_CONTROL, forces=[tau_r_hip, tau_r_knee,
+        tau_r_ankle, tau_l_hip, tau_l_knee, tau_l_ankle])
     p.stepSimulation()
 
 
@@ -150,8 +149,8 @@ def set_torque_1():
 
     # update forces
     p.setJointMotorControlArray(legsID, [right_hip_joint, right_knee_joint, right_ankle_joint, left_hip_joint,
-                                         left_knee_joint, left_ankle_joint], controlMode=p.TORQUE_CONTROL,
-                                forces=[tau_r_hip, tau_r_knee, tau_r_ankle, tau_l_hip, tau_l_knee, tau_l_ankle])
+        left_knee_joint, left_ankle_joint], controlMode=p.TORQUE_CONTROL, forces=[tau_r_hip, tau_r_knee,
+        tau_r_ankle, tau_l_hip, tau_l_knee, tau_l_ankle])
     p.stepSimulation()
 
 
@@ -182,8 +181,8 @@ def set_torque_2():
 
     # update forces
     p.setJointMotorControlArray(legsID, [right_hip_joint, right_knee_joint, right_ankle_joint, left_hip_joint,
-                                         left_knee_joint, left_ankle_joint], controlMode=p.TORQUE_CONTROL,
-                                forces=[tau_r_hip, tau_r_knee, tau_r_ankle, tau_l_hip, tau_l_knee, tau_l_ankle])
+        left_knee_joint, left_ankle_joint], controlMode=p.TORQUE_CONTROL, forces=[tau_r_hip, tau_r_knee,
+        tau_r_ankle, tau_l_hip, tau_l_knee, tau_l_ankle])
     p.stepSimulation()
 
 
@@ -214,8 +213,8 @@ def set_torque_3():
 
     # update forces
     p.setJointMotorControlArray(legsID, [right_hip_joint, right_knee_joint, right_ankle_joint, left_hip_joint,
-                                         left_knee_joint, left_ankle_joint], controlMode=p.TORQUE_CONTROL,
-                                forces=[tau_r_hip, tau_r_knee, tau_r_ankle, tau_l_hip, tau_l_knee, tau_l_ankle])
+        left_knee_joint, left_ankle_joint], controlMode=p.TORQUE_CONTROL, forces=[tau_r_hip, tau_r_knee,
+        tau_r_ankle, tau_l_hip, tau_l_knee, tau_l_ankle])
     p.stepSimulation()
 
 
@@ -236,7 +235,6 @@ def state1():
         #print("contact points: " + str(contact_points))
         if len(contact_points) > 0 and in_contact(contact_points, [right_foot_link, right_ankle_link]):
             no_contact = 0
-            print("state 1 contact")
 
     state2()
 
@@ -259,12 +257,11 @@ def state3():
             contact_distance = contact_points[0][8]
             if contact_distance < foot_contact_tol:
                 no_contact = 0
-                print("state 3 contact")
     state0()
 
 
 # start the FSM with a small time delay to allow character to fall into place
 t = time.time()
-while time.time() - t < 0.3:
+while time.time() - t < 0.5:
     p.stepSimulation()
 state0()
